@@ -12,20 +12,23 @@ while hero.hp != 0  and monstre.hp != 0:
 
     if action.upper() == 'SOIGNER':
         print(f'Le {hero.name} se soigne')
-        print(hero.hp, '->', hero.hp + hero.soin)
+        print(hero.hp, '-> ', end='')
         hero.soigner(hero)
+        print(hero.hp)
 
     else:
         print(f'Le {hero.name} attaque le {monstre.name}')
-        print(monstre.hp, '->', monstre.hp - hero.dmg)
+        print(monstre.hp, '-> ', end='')
         hero.infligerDegats(monstre)
+        print(monstre.hp)
 
     if monstre.hp > 0:
         print('\n-- Tour du monstre --', end='\n\n')
 
         print(f'Le {monstre.name} attaque le {hero.name}')
-        print(hero.hp, '->', hero.hp - monstre.dmg)
+        print(hero.hp, '-> ', end='')
         monstre.infligerDegats(hero)
+        print(hero.hp)
 
 if hero.hp == 0:
     print('\n>>> C\'est perdu')
