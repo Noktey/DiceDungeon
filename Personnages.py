@@ -1,24 +1,37 @@
 class Personnage:
-    def __init__(self, name, hp_max, dmg, soin):
+    def __init__(self, name, hp_max, dice):
         self.name = name
         self.hp_max = hp_max
         self.hp = hp_max
-        self.dmg = dmg
-        self.soin = soin
+        self.dice = dice
 
-    def infligerDegats(self, target):
-        target.subirDegats(self.dmg)
+    def getHPPerso(self):
+        return self.hp
 
-    def subirDegats(self, dmg):
+    def getHPMaxPerso(self):
+        return self.hp_max
+
+    def getNamePerso(self):
+        return self.name
+
+    def getDicePerso(self):
+        return self.dice
+
+    def degats(self, dmg):
         self.hp -= dmg
         if self.hp < 0:
             self.hp = 0
 
+    def soin(self, soin):
+        self.hp += soin
+        if self.hp > self.hp_max:
+            self.hp = self.hp_max
+
+
 class Hero(Personnage):
-    def soigner(self, target):
-        target.hp += self.soin
-        if target.hp > target.hp_max:
-            target.hp = target.hp_max
+    def __init__(self, name, hp_max, dice, couleur='ffffff'):
+        super().__init__(name, hp_max, dice)
+        self.couleur = couleur
 
 
 class Monstre(Personnage):
